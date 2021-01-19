@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="header"></th:block>
+</head>
+<body>
+
+<th:block sec:authorize="isAnonymous()" th:include="/navigation/menu"></th:block>
+<th:block sec:authorize="isAuthenticated()" th:include="/navigation/auth_menu"></th:block>
+
+<div class="about">
+    <div class="content container">
+        <form id="newItemForm">
+            <div class="row">
+                <div class="col-25">
+                    <label>Тип элемента</label>
+                </div>
+                <div class="col-75">
+                    <input class="form-text-field" type="text" name="type">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Маркировка</label>
+                </div>
+                <div class="col-75">
+                    <input class="form-text-field" type="text" name="marking">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Ток</label>
+                </div>
+                <div class="col-75">
+                    <input class="form-text-field" type="text" name="current">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Секция</label>
+                </div>
+                <div class="col-75">
+                    <input class="form-text-field" type="text" name="section">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>Количество</label>
+                </div>
+                <div class="col-75">
+                    <input class="form-text-field" type="text" name="count">
+                </div>
+            </div>
+
+            <div class="row">
+                <input class="form-submit right" type="button" id="addItemButton" value="Добавить">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="section">
+    <div class="content">
+        <table border="1" cellpadding="7" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Тип</th>
+                <th>Маркировка</th>
+                <th>Ток</th>
+                <th>Секция</th>
+                <th>Количество</th>
+            </tr>
+            <tbody id="items-table">
+            </tbody>
+            </thead>
+        </table>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/navigation.js"></script>
+<script src="/js/itemTable.js"></script>
+<script src="/js/storage.js"></script>
+</html>

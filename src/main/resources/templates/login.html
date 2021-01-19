@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="header"></th:block>
+</head>
+<body>
+
+<th:block sec:authorize="isAnonymous()" th:include="/navigation/menu"></th:block>
+<th:block sec:authorize="isAuthenticated()" th:include="/navigation/auth_menu"></th:block>
+
+<div class="about">
+    <div id="contentSection" class="content">
+        <div class="container">
+            <form action="/login" method="post">
+                <div class="row">
+                    <div class="col-25">
+                        <label>Имя пользователя</label>
+                    </div>
+                    <div class="col-75">
+                        <input class="form-text-field" type="text" name="username" placeholder="Имя пользователя..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label>Пароль</label>
+                    </div>
+                    <div class="col-75">
+                        <input class="form-text-field" type="password" name="password" placeholder="Пароль..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label>Запомнить меня</label>
+                    </div>
+                    <div class="col-75">
+                        <input class="form-text-field" type="checkbox" name="remember-me">
+                    </div>
+                </div>
+                <div class="row">
+                    <input class="form-submit right" type="submit" value="Продолжить">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/navigation.js"></script>
+</html>

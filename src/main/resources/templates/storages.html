@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="header"></th:block>
+</head>
+<body>
+
+<th:block sec:authorize="isAnonymous()" th:include="/navigation/menu"></th:block>
+<th:block sec:authorize="isAuthenticated()" th:include="/navigation/auth_menu"></th:block>
+
+<div class="about">
+    <div class="content container">
+        <form action="/create" method="post">
+            <div class="row">
+                <div class="col-25">
+                    <label>Название склада</label>
+                </div>
+                <div class="col-75">
+                    <input class="form-text-field" type="text" name="storageName">
+                </div>
+            </div>
+            <div class="row">
+                <input class="form-submit right" type="submit" value="Создать">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="section">
+    <div class="content">
+        <div class="storage-div" th:each="storage : ${storages}">
+            <a class="storage-title" th:href="'/storage/' + ${storage.id}" th:text="${storage.name}"></a>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/navigation.js"></script>
+</html>
