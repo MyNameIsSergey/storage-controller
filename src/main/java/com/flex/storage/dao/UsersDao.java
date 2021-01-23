@@ -22,10 +22,12 @@ public class UsersDao extends JdbcDaoSupport {
     }
 
     public void addUser(UserModel user) {
-        String sql = "INSERT INTO users (user_name, encrypted_password, enabled) VALUES (?,?,?);";
-        this.getJdbcTemplate().update(sql, user.getUsername(), user.getEncryptedPassword(), user.isEnabled());
-        String getSql = "SELECT id FROM users WHERE user_name = ?;";
-        Integer id = this.getJdbcTemplate().queryForObject(getSql, new Object[] { user.getUsername() }, Integer.class);
+        String sql = "INSERT INTO users (user_name, encrypted_password, enabled) VALUES (?,?,?);" +
+                "SELECT LAST_INSERT_ID();";
+        Object[] params = {
+                user.getUsername(), user.getEncryptedPassword(), user.isEnabled()
+        };
+        Integer id = this.getJdbcTemplate().queryForObject(sql, Integer.class, params);
         user.setId(id);
     }
 

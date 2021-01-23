@@ -20,6 +20,11 @@ public class StorageController {
     @Autowired
     StoragesDao dao;
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:storages";
+    }
+
     @GetMapping("/storages")
     public String getItemsInStorage(Model model) {
         ExtendedUser details = (ExtendedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

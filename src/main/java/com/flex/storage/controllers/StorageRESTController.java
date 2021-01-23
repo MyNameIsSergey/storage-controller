@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,6 +24,12 @@ public class StorageRESTController {
     @PostMapping("/item")
     private ResponseEntity<Item> addItem(Item item, int storageId) {
         dao.saveItem(item, storageId);
+        return ResponseEntity.ok(item);
+    }
+
+    @PutMapping("/item")
+    private ResponseEntity<Item> updateItem(Item item) {
+        dao.updateItem(item);
         return ResponseEntity.ok(item);
     }
 }

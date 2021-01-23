@@ -49,13 +49,30 @@ public class StoragesDao extends JdbcDaoSupport {
     }
 
     public void saveStorage(Storage storage, int userId) {
-        String sql = "INSERT INTO storages (name, user_id) VALUES (?,?);";
-        this.getJdbcTemplate().update(sql, storage.getName(), userId);
+        String sql = "INSERT INTO storages (name, user_id) VALUES (?,?);" +
+                "SELECT LAST_INSERT_ID();";
+        Integer id = this.getJdbcTemplate().queryForObject(sql, Integer.class, storage.getName(), userId);
+        storage.setId(id);
+    }
+
+    public void updateItem(Item item) {
+        String sql = "UPDATE items SET type=?,section=?,marking=?,count=?,current=? " +
+                "WHERE id = ?;";
+        Object[] params = {
+                item.getType(),
+                item.getSection(),
+                item.getMarking(),
+                item.getCount(),
+                item.getCurrent(),
+                item.getId()
+        };
+        this.getJdbcTemplate().update(sql, params);
     }
 
     public void saveItem(Item item, int storageId) {
         String sql = "INSERT INTO items (type,section,marking,count,current,storage_id) " +
-                "VALUES (?,?,?,?,?,?);";
+                "VALUES (?,?,?,?,?,?);" +
+                "SELECT LAST_INSERT_ID();";
         Object[] params = {
                 item.getType(),
                 item.getSection(),
@@ -64,6 +81,7 @@ public class StoragesDao extends JdbcDaoSupport {
                 item.getCurrent(),
                 storageId
         };
-        this.getJdbcTemplate().update(sql, params);
+        Integer id = this.getJdbcTemplate().queryForObject(sql, Integer.class, params);
+        item.setId(id);
     }
 }
