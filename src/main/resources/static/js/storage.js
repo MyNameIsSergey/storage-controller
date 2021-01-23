@@ -1,11 +1,8 @@
 
-const REQUEST_DONE = 4;
 
 document.getElementById('addItemButton').onclick = onFormSubmit;
 
 loadItems();
-
-
 
 function onFormSubmit() {
     const xhr = new XMLHttpRequest();
@@ -14,9 +11,9 @@ function onFormSubmit() {
     data.append('storageId', getStorageId());
     xhr.send(data);
     xhr.onreadystatechange = function() { // (3)
-        if (xhr.readyState != REQUEST_DONE) return;
-        if (xhr.status != 200) {
-            alert(xhr.status + ': ' + xhr.statusText);
+        if (xhr.readyState !== xhr.DONE) return;
+        if (xhr.status !== 200) {
+            alert('Не удалось добавить');
         } else {
             let item = JSON.parse(xhr.responseText);
             addItem(item);

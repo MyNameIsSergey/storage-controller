@@ -8,6 +8,73 @@
 <th:block sec:authorize="isAnonymous()" th:include="/navigation/menu"></th:block>
 <th:block sec:authorize="isAuthenticated()" th:include="/navigation/auth_menu"></th:block>
 
+<div id="editItemModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Редактировать</h2>
+        </div>
+        <div class="modal-body">
+            <form id="editItemForm">
+                <div class="row">
+                    <div class="col-25">
+                        <label>Тип элемента</label>
+                    </div>
+                    <div class="col-75">
+                        <input class="form-text-field" id="modal-type" type="text" name="type">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label>Маркировка</label>
+                    </div>
+                    <div class="col-75">
+                        <input class="form-text-field" id="modal-marking" type="text" name="marking">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-25">
+                        <label>Ток</label>
+                    </div>
+                    <div class="col-75">
+                        <input class="form-text-field" id="modal-current" type="number" name="current">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label>Секция</label>
+                    </div>
+                    <div class="col-75">
+                        <input class="form-text-field" id="modal-section" type="text" name="section">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label>Количество</label>
+                    </div>
+                    <div class="col-75">
+                        <input class="form-text-field" id="modal-count" type="number" name="count">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input class="form-submit right" type="button" itemid="" id="editItemButton" value="Изменить">
+                    <input class="form-submit left" type="button" itemid="" id="cancelEditingButton" value="Отменить">
+                    <input class="form-submit left" type="button" itemid="" id="deleteItemButton" value="Удалить">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
 <div class="about">
     <div class="content container">
         <form id="newItemForm">
@@ -35,7 +102,7 @@
                     <label>Ток</label>
                 </div>
                 <div class="col-75">
-                    <input class="form-text-field" type="text" name="current">
+                    <input class="form-text-field" type="number" name="current">
                 </div>
             </div>
 
@@ -53,7 +120,7 @@
                     <label>Количество</label>
                 </div>
                 <div class="col-75">
-                    <input class="form-text-field" type="text" name="count">
+                    <input class="form-text-field" type="number" name="count">
                 </div>
             </div>
 
